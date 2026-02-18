@@ -1,0 +1,32 @@
+fastapi==0.128.8
+uvicorn[standard]==0.40.0
+python-multipart==0.0.22
+deepface==0.0.93
+tf-keras
+opencv-python-headless
+numpy
+Pillow
+qrcode[pil]
+aiofiles
+boto3>=1.28.0
+ruff==0.11.2
+supabase>=2.0.0
+email-validator>=2.0.0
+python-dotenv>=1.0.0
+PyJWT>=2.8.0
+cryptography>=41.0.0
+requests>=2.31.0
+pgvector>=0.2.0
+redis>=5.0.0
+celery>=5.3.0
+sse-starlette>=1.6.0
+psycopg2-binary>=2.9.0
+
+# Monitoring
+prometheus-client>=0.19.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+httpx>=0.24.0

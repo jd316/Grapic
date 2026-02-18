@@ -1,0 +1,159 @@
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+env/
+ENV/
+.venv
+
+# ── Environment & Secrets ─────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
+
+# ── Data & Uploads ────────────────────────────────────────────────────────
+backend/data/
+backend/data/uploads/*
+backend/data/thumbnails/*
+backend/data/*.db
+backend/data/*.sqlite
+backend/data/*.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# ── IDE ───────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# ── OS ────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ── DeepFace & ML Models ──────────────────────────────────────────────────
+.deepface/
+*.h5
+*.pb
+*.onnx
+*.weights
+models/
+checkpoints/
+
+# ── Logs ──────────────────────────────────────────────────────────────────
+*.log
+logs/
+*.log.*
+*.logs
+
+# ── Celery & Redis ────────────────────────────────────────────────────────
+celerybeat-schedule
+celerybeat.pid
+celeryd@*.pid
+*.pid
+
+# ── Docker ────────────────────────────────────────────────────────────────
+.dockerignore
+
+# ── Testing ───────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.cache
+
+# ── Node.js (Frontend) ────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+.yarn/
+.pnp.*
+
+# ── Expo & React Native ────────────────────────────────────────────────
+.expo/
+.expo-shared/
+.web-build/
+dist/
+.expo-shared/
+eas-build-cache/
+eas-build-metadata.json
+*.orig
+*.rej
+
+# ── Native Build Directories (Optional) ───────────────────────────
+# Uncomment if building locally instead of using EAS
+# ios/
+# android/
+
+# ── Documentation ──────────────────────────────────────────────────────────
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# ── Temporary Files ───────────────────────────────────────────────────────
+.tmp/
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+*.cache
+
+# ── Package Managers ──────────────────────────────────────────────────────
+*.tar.gz
+requirements-dev.txt.bak
+
+# ── Claude Code ───────────────────────────────────────────────────────────
+.claude/
+.claude-settings.json

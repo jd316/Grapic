@@ -1,0 +1,85 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      GRAPIC_ENV: production
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-changeme}@postgres:5432/grapic
+      USE_SELF_HOSTED_PG: "true"
+    volumes:
+      - grapic_data:/app/data
+    depends_on:
+      - redis
+      - postgres
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: grapic
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  celery_worker:
+    build: ./backend
+    command: celery -A app.celery_app worker --loglevel=info --concurrency=4
+    env_file:
+      - .env
+    environment:
+      GRAPIC_ENV: production
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-changeme}@postgres:5432/grapic
+      USE_SELF_HOSTED_PG: "true"
+    volumes:
+      - grapic_data:/app/data
+    depends_on:
+      - redis
+      - postgres
+
+  # Optional: Flower for Celery monitoring
+  # flower:
+  #   build: ./backend
+  #   command: celery -A app.celery_app flower --port=5555
+  #   ports:
+  #     - "5555:5555"
+  #   environment:
+  #     GRAPIC_ENV: production
+  #     REDIS_URL: redis://redis:6379/0
+  #     DATABASE_URL: postgresql://postgres:postgrespassword@postgres:5432/grapic
+  #   depends_on:
+  #     - redis
+
+volumes:
+  grapic_data:
+  postgres_data:
+  redis_data:
